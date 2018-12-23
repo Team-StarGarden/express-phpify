@@ -42,3 +42,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 * Inspired by [this tweet\(Korean\)](https://twitter.com/gaeulbyul/status/1051011599350124544), ([Github profile](https://github.com/gaeulbyul))
 * This library **IS NOT** guaranteed to be recognized as PHP.
 * If this library does not correctly mock the express to PHP, and if you know how to fix it in the source code, Feel free to give us a PR. It always will be welcomed.
+
+## TODO
+
+1. Force .php extension to every routes.
+2. stacktraces everywhere, just like PHP does.
+3. create user response to easteregg (just a POC code was implemented)
