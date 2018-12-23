@@ -50,6 +50,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 ## TODO
 
-1. Force .php extension to every routes.
+1. Force .php extension to every routes. (DONE)
 2. stacktraces everywhere, just like PHP does.
 3. create user response to easteregg (just a POC code was implemented)
