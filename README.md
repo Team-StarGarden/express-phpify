@@ -19,6 +19,11 @@ And add below code to your app.
 phpify(app);
 ```
 
+### READ THIS!!
+
+This library will only allow accessing to paths that ends with / or with .php extension,  
+Please Make it note, while using this library.
+
 ## Built With
 
 * [Express](https://www.npmjs.com/package/express) - The web framework used
