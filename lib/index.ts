@@ -25,6 +25,9 @@ export function phpify(app: Application) {
     } else if (!cookie.PHPSESSID) {
       res.cookie('PHPSESSID', createFakePHPSESSID());
     }
+    if (!req.url.toLowerCase().endsWith('.php') && !req.url.toLowerCase().endsWith('/')) {
+        res.redirect(req.url+'.php');
+    }
     if (/=PHP(.+)/.test(req.url.split('?')[1])) {
         if (req.url.split('?')[1] === "=PHPE9568F36-D428-11d2-A769-00AA001ACF42") {
             console.log("Easteregg Triggered");
