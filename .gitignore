@@ -1,0 +1,21 @@
+# IDE/Editor
+
+## Visual Studio Code
+.vscode/
+
+
+# Package Manager
+
+## Node Modules
+node_modules/
+
+## Yarn
+yarn.lock
+yarn-error.log
+
+## NPM
+package-lock.json
+
+
+# Built Result
+dist/**/*
