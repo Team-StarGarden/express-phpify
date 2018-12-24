@@ -19,15 +19,15 @@ function createFakePHPSESSID(): string {
  */
 export interface PhpifyOption {
   /**
-   * Header Field `X-Powered-By`.
+   * Header Field `X-Powered-By`. (default: `PHP 5.3.3`), false to disable
    */
   headerXPoweredBy?: false | string;
   /**
-   * Whether to disable fake PHPSESSID.
+   * Whether to disable fake PHPSESSID. (default: true), false to disable
    */
   fakePHPSESSID?: boolean;
   /**
-   * Redirect to php extension option.
+   * Redirect to php extension option. (default: redirect), false to disable
    */
   redirection?: false | PhpifyRedirectionOption;
 }
@@ -37,11 +37,13 @@ export interface PhpifyOption {
  */
 export interface PhpifyRedirectionOption {
   /**
-   * Whether to disable force redirecting to php extension if the user connected to file other extension (like .html, .jsp).
+   * Whether to disable force redirection to php extension if the user requested a file to other extension (like .html, .jsp).
+   * set false to disable
    */
   file?: boolean;
   /**
-   * Whether to force redirecting to php extension if the user connected to folder.
+   * Whether to force redirection to php extension if the user requested directory.
+   * set false to disable
    */
   directory?: false | DirectoryRedirectionOption;
 }
@@ -52,6 +54,8 @@ export interface PhpifyRedirectionOption {
 export interface DirectoryRedirectionOption {
   /**
    * The file name of index.
+   * (default: index.php)
+   * e.g. /a/ -> /a/index.php
    */
   indexFileName?: string;
 }
