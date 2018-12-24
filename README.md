@@ -26,7 +26,7 @@ OR use the options to match your needs! (v.1.1.0 or higher)
 // `app` is your existing express application.
 phpify(app, {
   // (Optional) What should it set the header value to? default: PHP 5.3.3, set false to disable
-  headerXPoweredBy: 'PHP 5.3.3',
+  headerXPoweredBy: 'PHP/5.3.3',
   // Should it fake PHPSESSID? default: true, set false to disable
   fakePHPSESSID: true,
   // Redirection setup. This is the default, set false to disable

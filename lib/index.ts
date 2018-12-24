@@ -19,7 +19,7 @@ function createFakePHPSESSID(): string {
  */
 export interface PhpifyOption {
   /**
-   * Header Field `X-Powered-By`. (default: `PHP 5.3.3`), false to disable
+   * Header Field `X-Powered-By`. (default: `PHP/5.3.3`), false to disable
    */
   headerXPoweredBy?: false | string;
   /**
@@ -72,7 +72,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
 
   app.use((req, res, next) => {
     if (option.headerXPoweredBy !== false) {
-      res.setHeader('X-Powered-By', option.headerXPoweredBy || 'PHP 5.3.3');
+      res.setHeader('X-Powered-By', option.headerXPoweredBy || 'PHP/5.3.3');
     }
     if (option.fakePHPSESSID !== false) {
       const cookie = req.cookies.cookieName;
