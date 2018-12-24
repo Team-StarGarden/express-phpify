@@ -1,6 +1,7 @@
 # express-phpify
 
 Express, (literally) Redefined.
+**NOW WITH OPTIONS**
 
 ## Getting Started
 
@@ -12,17 +13,39 @@ Install this package to run following command.
 npm install express-phpify // or else you can use `yarn add express-phpify`.
 ```
 
-And add below code to your app.
+And just add below code to your app (if you don't need to configure something).
 
 ```js
 // `app` is your existing express application.
 phpify(app);
 ```
 
+OR use the options to match your needs! (v.1.1.0 or higher)
+
+```js
+// `app` is your existing express application.
+phpify(app, {
+  // (Optional) What should it set the header value to? set false to disable
+  headerXPoweredBy: 'PHP 5.3.3',
+  // Should it fake PHPSESSID? default: true, set false to disable
+  fakePHPSESSID: true,
+  // Redirection setup. This is the default, set false to disable
+  redirection: {
+    // add .php at end of the file, e.g. /a -> /a.php, default: true
+    file: true,
+    // should we redirect directory? set false to disable
+    directory: {
+      // (Optional) set the indexFileName e.g. /a/ -> /a/index.php
+      indexFileName: 'index.php'
+    }
+  }
+})
+```
+
 ### READ THIS!!
 
 This library will only allow accessing to paths that ends with / or with .php extension,  
-Please Make it note, while using this library.
+If you don't want it, Set the option `forceRedirectToPHPExtension` to `false`
 
 ## Built With
 
