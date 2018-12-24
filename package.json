@@ -1,6 +1,6 @@
 {
   "name": "express-phpify",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Express, (literally) Redefined.",
   "main": "lib/index.ts",
   "dependencies": {
