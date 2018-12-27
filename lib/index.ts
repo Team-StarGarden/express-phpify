@@ -7,7 +7,7 @@ const possible =
 function createFakePHPSESSID(): string {
   let text = '';
 
-  for (let i = 32; i--; ) {
+  for (let i = 32; i--;) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
 
@@ -78,9 +78,10 @@ export function phpify(app: Application, option?: PhpifyOption) {
       const cookie = req.cookies.cookieName;
       if (!cookie) {
         res.cookie('PHPSESSID', createFakePHPSESSID());
-      }
-      if (!cookie.PHPSESSID) {
-        res.cookie('PHPSESSID', createFakePHPSESSID());
+      } else {
+        if (!cookie.PHPSESSID) {
+          res.cookie('PHPSESSID', createFakePHPSESSID());
+        }
       }
     }
 
@@ -116,14 +117,14 @@ export function phpify(app: Application, option?: PhpifyOption) {
           } else {
             res.redirect(
               req.url +
-                (option.redirection.directory.indexFileName || 'index.php')
+              (option.redirection.directory.indexFileName || 'index.php')
             );
           }
         }
       }
     }
 
-    const data = req.url.split('?')[1];    
+    const data = req.url.split('?')[1];
 
     if (easterEggRegex.test(data)) {
       if (data === '=PHPE9568F36-D428-11d2-A769-00AA001ACF42') {
