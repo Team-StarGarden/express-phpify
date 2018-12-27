@@ -134,15 +134,3 @@ export function phpify(app: Application, option?: PhpifyOption) {
     next();
   });
 }
-
-import express from 'express';
-
-const app = express();
-phpify(app, {
-  headerXPoweredBy: 'PHP 5.3.3',
-  fakePHPSESSID: true,
-  redirection: {
-    file: true,
-    directory: false
-  }
-})
