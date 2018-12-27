@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "moduleResolution": "node",
     "outDir": "dist",
     "lib": ["es2018"],
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "declaration": true
   }
 }
