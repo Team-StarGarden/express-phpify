@@ -1,7 +1,7 @@
 # express-phpify
 
-Express, (literally) Redefined.
-**NOW WITH OPTIONS**
+Express, (literally) Redefined.  
+**NOW WITH OPTIONS**  
 
 ## Getting Started
 
@@ -25,8 +25,10 @@ OR use the options to match your needs! (v.1.1.0 or higher)
 ```js
 // `app` is your existing express application.
 phpify(app, {
-  // (Optional) What should it set the header value to? default: PHP/5.3.3, set false to disable
+  // (Optional) What should it set the header value X-Powered-By to? default: PHP/5.3.3, set false to disable
   headerXPoweredBy: 'PHP/5.3.3',
+  // (Optional) What should it set the header value server to? default: Apache/2.2.27 (Unix), set false to disable
+  headerServer: 'Apache/2.2.27 (Unix)',
   // Should it fake PHPSESSID? default: true, set false to disable
   fakePHPSESSID: true,
   // Redirection setup. This is the default, set false to disable
