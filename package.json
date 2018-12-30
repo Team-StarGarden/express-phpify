@@ -1,6 +1,6 @@
 {
   "name": "express-phpify",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Express, (literally) Redefined.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,11 @@
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
   },
-  "tags": ["express", "php", "fake"],
+  "tags": [
+    "express",
+    "php",
+    "fake"
+  ],
   "devDependencies": {
     "@types/cookie-parser": "^1.4.1",
     "@types/express": "^4.16.0",
