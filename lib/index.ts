@@ -23,6 +23,10 @@ export interface PhpifyOption {
    */
   headerXPoweredBy?: false | string;
   /**
+   * Header Field `server`. (default: `Apache/2.2.27 (Unix)`), false to disable
+   */
+  headerServer?: false | string;
+  /**
    * Whether to disable fake PHPSESSID. (default: true), false to disable
    */
   fakePHPSESSID?: boolean;
@@ -73,6 +77,9 @@ export function phpify(app: Application, option?: PhpifyOption) {
   app.use((req, res, next) => {
     if (option.headerXPoweredBy !== false) {
       res.setHeader('X-Powered-By', option.headerXPoweredBy || 'PHP/5.3.3');
+    }
+    if (option.headerServer !== false) {
+      res.setHeader('server', option.headerServer || 'Apache/2.2.27 (Unix)');
     }
     if (option.fakePHPSESSID !== false) {
       const cookie = req.cookies.cookieName;
