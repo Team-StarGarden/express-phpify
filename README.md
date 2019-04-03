@@ -45,7 +45,8 @@ phpify(app, {
 ```
 
 ### *Phpifying* existing application
-Before you declare actual application's algorithm, Please run `phpify(app);` *(Suppose `app` as express application)* beforehand.  
+
+Before you run actual application's codes, Please run `phpify(app);` *(Suppose `app` as express application)* beforehand.  
 phpifying can not procede, if you use `phpify` after the application logic. (responses are already sent)  
 
 ### READ THIS!!
