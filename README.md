@@ -51,7 +51,7 @@ phpifying can not procede, if you use `phpify` after the application logic. (res
 
 ### READ THIS!!
 
-This library will only allow accessing to paths that end with / or with .php extension,  
+This library will only allow accessing to paths that end with / or with .php extension *by default*,  
 If you don't want it, Set the option `redirection` to `false` (default: true)
 
 ## Built With
