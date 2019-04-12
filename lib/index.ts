@@ -82,7 +82,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
       res.setHeader('server', option.headerServer || 'Apache/2.2.27 (Unix)');
     }
     if (option.fakePHPSESSID !== false) {
-      const cookie = req.cookies.cookieName;
+      const cookie = req.cookies.PHPSESSID;
       if (!cookie) {
         res.cookie('PHPSESSID', createFakePHPSESSID());
       } else {
