@@ -34,6 +34,10 @@ export interface PhpifyOption {
    * Redirect to php extension option. (default: redirect), false to disable
    */
   redirection?: false | PhpifyRedirectionOption;
+  /**
+   * 
+   */
+  phpEastereggs?: boolean;
 }
 
 /**
@@ -134,14 +138,31 @@ export function phpify(app: Application, option?: PhpifyOption) {
       }
     }
 
-    const data = req.url.split('?')[1];
+    // Basic Implementation of PHP eastereggs.
+    if (option.phpEastereggs) {
+      const data = req.url.split('?')[1];
 
-    if (easterEggRegex.test(data)) {
-      if (data === '=PHPE9568F36-D428-11d2-A769-00AA001ACF42') {
-        console.log('[Express-Phpify] Easteregg Triggered');
+      if (easterEggRegex.test(data)) {
+        switch (data) {
+          case '=PHPE9568F36-D428-11d2-A769-00AA001ACF42':
+
+          break;
+          case '=PHPE9568F35-D428-11d2-A769-00AA001ACF42':
+
+          break;
+          case '=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000':
+
+          break;
+          case '=PHPE9568F34-D428-11d2-A769-00AA001ACF42':
+
+          break;
+          default:
+
+          break;
+        }
       }
-      // More EasterEggs Later
     }
+    
     next();
   });
 }

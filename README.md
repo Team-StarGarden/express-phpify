@@ -40,7 +40,9 @@ phpify(app, {
       // (Optional) set the indexFileName e.g. /a/ -> /a/index.php
       indexFileName: 'index.php'
     }
-  }
+  },
+  // EasterEgg setup. (will available at 1.2.3-beta releases) This is default, set false to disable
+  phpEastereggs: true
 })
 ```
 
@@ -82,4 +84,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 1. Force .php extension to every routes. (DONE)
 2. stacktraces everywhere, just like PHP does.
-3. create user response to easteregg (just a POC code was implemented)
+3. create user response to easteregg (WIP)
