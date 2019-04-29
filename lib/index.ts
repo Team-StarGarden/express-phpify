@@ -254,14 +254,20 @@ export function phpify(app: Application, option?: PhpifyOption) {
           break;
         }
 
-        const buff = Buffer.from(dataToSend, 'base64');
+        if (dataToSend !== "") {
+          const buff = Buffer.from(dataToSend, 'base64');
 
-        res.writeHead(200, {
-          'Content-Type': 'image/gif',
-          'Content-Length': buff.length
-        });
-
-        res.end(buff);
+          res.writeHead(200, {
+            'Content-Type': 'image/gif',
+            'Content-Length': buff.length
+          });
+  
+          res.end(buff);
+          return;
+        } else {
+          res.end();
+          return;
+        }
       }
     }
     
