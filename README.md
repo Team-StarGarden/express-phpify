@@ -92,4 +92,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 1. Force .php extension to every routes. (DONE)
 2. stacktraces everywhere, just like PHP does.
-3. create user response to easteregg (WIP)
+3. create user response to easteregg (DONE)
