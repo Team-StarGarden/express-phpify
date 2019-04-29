@@ -205,9 +205,10 @@ export function phpify(app: Application, option?: PhpifyOption) {
             } else if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
               try {
                 const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
-                const majorVersion = parseInt(verData[0]);
-                const minorVersion = parseInt(verData[1]);
-                var patchVersion = parseInt(verData[2]);
+                console.log(verData);
+                const majorVersion = parseInt(verData[1]);
+                const minorVersion = parseInt(verData[2]);
+                var patchVersion = parseInt(verData[3]);
 
                 if (majorVersion === 5) {
                   if (minorVersion === 0) {
@@ -239,7 +240,9 @@ export function phpify(app: Application, option?: PhpifyOption) {
                   } else {
                     dataToSend = PHPEasterEggImageBase64.zeevDog;
                   }
-                } 
+                } else {
+                  dataToSend = PHPEasterEggImageBase64.elephantLogo;
+                }
               } catch (e) {
                 console.log("Failed to detect version for easteregg..., please provide valid version for the easteregg");
 
