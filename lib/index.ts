@@ -91,11 +91,6 @@ export function phpify(app: Application, option?: PhpifyOption) {
       if (!cookie) {
         console.log("[Express-Phpify] client cookie not found. setting one.");
         res.cookie('PHPSESSID', createFakePHPSESSID(), { maxAge: 9600 });
-      } else {
-        if (!cookie.PHPSESSID) {
-          console.log("[Express-Phpify] client cookie PHPSESSID not found. creating one.");
-          res.cookie('PHPSESSID', createFakePHPSESSID(), { maxAge: 9600 });
-        }
       }
     }
 
@@ -138,22 +133,30 @@ export function phpify(app: Application, option?: PhpifyOption) {
       }
     }
 
+    // Get the version user provided.
+
     // Basic Implementation of PHP eastereggs.
     if (option.phpEastereggs) {
+
+
       const data = req.url.split('?')[1];
 
       if (easterEggRegex.test(data)) {
         switch (data) {
-          case '=PHPE9568F36-D428-11d2-A769-00AA001ACF42':
+          case '=PHPE9568F34-D428-11d2-A769-00AA001ACF42':
+            // PHP Logo
 
           break;
           case '=PHPE9568F35-D428-11d2-A769-00AA001ACF42':
+            // Zend Logo
+
+          break;
+          case '=PHPE9568F36-D428-11d2-A769-00AA001ACF42':
+            // Animals And a Guy Easteregg
 
           break;
           case '=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000':
-
-          break;
-          case '=PHPE9568F34-D428-11d2-A769-00AA001ACF42':
+            // PHP Credits EasterEgg
 
           break;
           default:
