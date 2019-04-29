@@ -35,7 +35,9 @@ phpify(app, {
     // maxAge of fake session Cookie in milliseconds, (default: 5 minutes)
     maxAge: 300000,
     // Instead of PHPSESSID, Which fake session name you are going to use? (default: PHPSESSID)
-    sessionName: "PHPSESSID"
+    sessionName: "PHPSESSID",
+    // Where should be the basePath of the cookie? (default: /)
+    basePath: "/"
   },
   // Redirection setup. This is the default, set false to disable
   redirection: {

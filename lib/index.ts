@@ -53,6 +53,11 @@ export interface SessionIDOption {
    * Provide the sessionID name of cookie (default: PHPSESSID)
    */
   sessionName?: string;
+
+  /**
+   * Provide the path where should be the base path of cookie
+   */
+  basePath?: string;
 }
 
 /**
@@ -106,6 +111,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
       const config = option.fakePHPSESSID as unknown as SessionIDOption;
       let maxAge = 1000*60*5;
       let sessionName = "PHPSESSID";
+      let path = "/"
       if (typeof config !== "undefined") {
         if (typeof config.maxAge !== "undefined") {
           maxAge = config.maxAge;
@@ -113,10 +119,13 @@ export function phpify(app: Application, option?: PhpifyOption) {
         if (typeof config.sessionName !== "undefined") {
           sessionName = config.sessionName;
         }
+        if (typeof config.basePath !== "undefined") {
+          path = config.basePath;
+        }
       }
       const cookieVal = cookie ? cookie : createFakePHPSESSID();
       
-      res.cookie(sessionName, cookieVal, {maxAge});
+      res.cookie(sessionName, cookieVal, {maxAge, path});
     }
 
     if (option.redirection !== false) {
