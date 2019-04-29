@@ -181,7 +181,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
     // Get the version user provided.
 
     // Basic Implementation of PHP eastereggs.
-    if (option.phpEastereggs) {
+    if (option.phpEastereggs !== false) {
 
       const data = req.url.split('?')[1];
 
@@ -249,8 +249,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
             }
           break;
           case '=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000':
-            // PHP Credits EasterEgg
-            // Will Do It Later.
+            
           break;
         }
 
