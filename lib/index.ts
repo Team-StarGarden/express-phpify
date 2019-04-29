@@ -72,6 +72,7 @@ const easterEggRegex = /=PHP(.+)/;
  * @param option the phpify option
  */
 export function phpify(app: Application, option?: PhpifyOption) {
+  // Enable CookieParser.
   app.use(cookieParser());
 
   app.use((req, res, next) => {
@@ -84,10 +85,12 @@ export function phpify(app: Application, option?: PhpifyOption) {
     if (option.fakePHPSESSID !== false) {
       const cookie = req.cookies.PHPSESSID;
       if (!cookie) {
-        res.cookie('PHPSESSID', createFakePHPSESSID());
+        console.log("[Express-Phpify] client cookie not found. setting one.");
+        res.cookie('PHPSESSID', createFakePHPSESSID(), { maxAge: 9600 });
       } else {
         if (!cookie.PHPSESSID) {
-          res.cookie('PHPSESSID', createFakePHPSESSID());
+          console.log("[Express-Phpify] client cookie PHPSESSID not found. creating one.");
+          res.cookie('PHPSESSID', createFakePHPSESSID(), { maxAge: 9600 });
         }
       }
     }
@@ -135,7 +138,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
 
     if (easterEggRegex.test(data)) {
       if (data === '=PHPE9568F36-D428-11d2-A769-00AA001ACF42') {
-        console.log('Easteregg Triggered');
+        console.log('[Express-Phpify] Easteregg Triggered');
       }
       // More EasterEggs Later
     }
