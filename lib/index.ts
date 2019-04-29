@@ -46,7 +46,9 @@ export interface PhpifyOption {
    */
   redirection?: false | PhpifyRedirectionOption;
   /**
-   * 
+   * Mock the behavior of PHP Eastereggs, it will get `headerXPoweredBy` option for version of php to mock.
+   * Since there is no eastereggs since PHP/5.5.0, any version since 5.5.x will not get eastereggs even with this option setted true
+   * (Default: true)
    */
   phpEastereggs?: boolean;
 }
