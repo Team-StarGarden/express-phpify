@@ -187,88 +187,104 @@ export function phpify(app: Application, option?: PhpifyOption) {
 
       if (easterEggRegex.test(data)) {
         let dataToSend = "";
-        switch (data) {
-          case '=PHPE9568F34-D428-11d2-A769-00AA001ACF42':
-            // PHP Logo
-            dataToSend = PHPEasterEggImageBase64.PHPLogo
-            
-          break;
-          case '=PHPE9568F35-D428-11d2-A769-00AA001ACF42':
-            // Zend Logo
-            dataToSend = PHPEasterEggImageBase64.zendLogo;
+        let runEaster = (option.headerXPoweredBy !== false) ? (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) ? true : false : true;
+        try {
+          if (option.headerXPoweredBy !== false && runEaster) {
+            if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
+              const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
+              const majorVersion = parseInt(verData[1]);
+              const minorVersion = parseInt(verData[2]);
 
-          break;
-          case '=PHPE9568F36-D428-11d2-A769-00AA001ACF42':
-            // Animals And a Guy Easteregg
-            if (option.headerXPoweredBy === false) {
-              dataToSend = PHPEasterEggImageBase64.elephantLogo;
-            } else if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
-              try {
-                const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
-                const majorVersion = parseInt(verData[1]);
-                const minorVersion = parseInt(verData[2]);
-                const patchVersion = parseInt(verData[3]);
-
-                if (majorVersion === 5) {
-                  if (minorVersion === 0) {
-                    if (patchVersion <= 3) {
-                      dataToSend = PHPEasterEggImageBase64.sterlingBunny;
-                    } else {
-                      dataToSend = PHPEasterEggImageBase64.zeevDog;
-                    }
-                  } else if (minorVersion === 1) {
-                    if (patchVersion <= 2) {
-                      dataToSend = PHPEasterEggImageBase64.zeevDog;
-                    } else {
-                      dataToSend = PHPEasterEggImageBase64.colored;
-                    }
-                  } else if (minorVersion === 2) {
-                    dataToSend = PHPEasterEggImageBase64.colored;
-                  } else {
-                    dataToSend = PHPEasterEggImageBase64.elephantLogo;
-                  }
-                } else if (majorVersion === 4) {
-                  if (0 <= minorVersion && minorVersion <= 2) {
-                    dataToSend = PHPEasterEggImageBase64.thiesArntzen;
-                  } else if (minorVersion === 3) {
-                    if (patchVersion <= 10) {
-                      dataToSend = PHPEasterEggImageBase64.stigDog;
-                    } else {
-                      dataToSend = PHPEasterEggImageBase64.zeevDog;
-                    }
-                  } else {
-                    dataToSend = PHPEasterEggImageBase64.zeevDog;
-                  }
-                } else {
-                  dataToSend = PHPEasterEggImageBase64.elephantLogo;
-                }
-              } catch (e) {
-                console.log("Failed to detect version for easteregg..., please provide valid version for the easteregg");
-
+              if (majorVersion > 5 || (majorVersion == 5 && minorVersion >= 5)) {
+                runEaster = false;
               }
-            } else {
-              dataToSend = PHPEasterEggImageBase64.elephantLogo;
             }
-          break;
-          case '=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000':
-            // PHP Credits
-            
-          break;
+          }
+        } catch (e) {
+          console.log("[Express-phpify] can not read the format of version.")
         }
-
-        if (dataToSend !== "") {
-          const buff = Buffer.from(dataToSend, 'base64');
-
-          res.writeHead(200, {
-            'Content-Type': 'image/gif',
-            'Content-Length': buff.length
-          });
+        if (runEaster) {
+          switch (data) {
+            case '=PHPE9568F34-D428-11d2-A769-00AA001ACF42':
+              // PHP Logo
+              dataToSend = PHPEasterEggImageBase64.PHPLogo
+              
+            break;
+            case '=PHPE9568F35-D428-11d2-A769-00AA001ACF42':
+              // Zend Logo
+              dataToSend = PHPEasterEggImageBase64.zendLogo;
   
-          res.end(buff);
-          return;
-        } else {
-          res.end();
-          return;
+            break;
+            case '=PHPE9568F36-D428-11d2-A769-00AA001ACF42':
+              // Animals And a Guy Easteregg
+              if (option.headerXPoweredBy === false) {
+                dataToSend = PHPEasterEggImageBase64.elephantLogo;
+              } else if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
+                try {
+                  const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
+                  const majorVersion = parseInt(verData[1]);
+                  const minorVersion = parseInt(verData[2]);
+                  const patchVersion = parseInt(verData[3]);
+  
+                  if (majorVersion === 5) {
+                    if (minorVersion === 0) {
+                      if (patchVersion <= 3) {
+                        dataToSend = PHPEasterEggImageBase64.sterlingBunny;
+                      } else {
+                        dataToSend = PHPEasterEggImageBase64.zeevDog;
+                      }
+                    } else if (minorVersion === 1) {
+                      if (patchVersion <= 2) {
+                        dataToSend = PHPEasterEggImageBase64.zeevDog;
+                      } else {
+                        dataToSend = PHPEasterEggImageBase64.colored;
+                      }
+                    } else if (minorVersion === 2) {
+                      dataToSend = PHPEasterEggImageBase64.colored;
+                    } else if (minorVersion < 5) {
+                      dataToSend = PHPEasterEggImageBase64.elephantLogo;
+                    }
+                  } else if (majorVersion === 4) {
+                    if (0 <= minorVersion && minorVersion <= 2) {
+                      dataToSend = PHPEasterEggImageBase64.thiesArntzen;
+                    } else if (minorVersion === 3) {
+                      if (patchVersion <= 10) {
+                        dataToSend = PHPEasterEggImageBase64.stigDog;
+                      } else {
+                        dataToSend = PHPEasterEggImageBase64.zeevDog;
+                      }
+                    } else {
+                      dataToSend = PHPEasterEggImageBase64.zeevDog;
+                    }
+                  } else {
+                    dataToSend = "";
+                  }
+                } catch (e) {
+                  console.log("Failed to detect version for easteregg..., please provide valid version for the easteregg");
+  
+                }
+              } else {
+                dataToSend = PHPEasterEggImageBase64.elephantLogo;
+              }
+            break;
+            case '=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000':
+              // PHP Credits
+              
+            break;
+          }
+  
+          if (dataToSend !== "") {
+            const buff = Buffer.from(dataToSend, 'base64');
+  
+            res.writeHead(200, {
+              'Content-Type': 'image/gif',
+              'Content-Length': buff.length
+            });
+    
+            res.end(buff);
+            return;
+          }
+  
         }
       }
     }
