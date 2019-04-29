@@ -194,10 +194,10 @@ export function phpify(app: Application, option?: PhpifyOption) {
           if (option.headerXPoweredBy !== false && runEaster) {
             if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
               const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
-              const majorVersion = parseInt(verData[1]);
-              const minorVersion = parseInt(verData[2]);
+              const majorVersion = parseInt(verData[1], 10);
+              const minorVersion = parseInt(verData[2], 10);
 
-              if (majorVersion > 5 || (majorVersion == 5 && minorVersion >= 5)) {
+              if (majorVersion > 5 || (majorVersion === 5 && minorVersion >= 5)) {
                 runEaster = false;
               }
             }
@@ -224,9 +224,9 @@ export function phpify(app: Application, option?: PhpifyOption) {
               } else if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
                 try {
                   const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
-                  const majorVersion = parseInt(verData[1]);
-                  const minorVersion = parseInt(verData[2]);
-                  const patchVersion = parseInt(verData[3]);
+                  const majorVersion = parseInt(verData[1], 10);
+                  const minorVersion = parseInt(verData[2], 10);
+                  const patchVersion = parseInt(verData[3], 10);
   
                   if (majorVersion === 5) {
                     if (minorVersion === 0) {
