@@ -105,12 +105,14 @@ export function phpify(app: Application, option?: PhpifyOption) {
       const cookie = req.cookies.PHPSESSID;
       const config = option.fakePHPSESSID as unknown as SessionIDOption;
       let maxAge = 1000*60*5;
-      let sessionName = "PHPSESSID"; 
-      if (typeof config.maxAge !== "undefined") {
-        maxAge = config.maxAge;
-      }
-      if (typeof config.sessionName !== "undefined") {
-        sessionName = config.sessionName;
+      let sessionName = "PHPSESSID";
+      if (typeof config !== "undefined") {
+        if (typeof config.maxAge !== "undefined") {
+          maxAge = config.maxAge;
+        }
+        if (typeof config.sessionName !== "undefined") {
+          sessionName = config.sessionName;
+        }
       }
       const cookieVal = cookie ? cookie : createFakePHPSESSID();
       
