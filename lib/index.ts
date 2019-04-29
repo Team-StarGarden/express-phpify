@@ -249,6 +249,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
             }
           break;
           case '=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000':
+            // PHP Credits
             
           break;
         }
