@@ -29,8 +29,14 @@ phpify(app, {
   headerXPoweredBy: 'PHP/5.3.3',
   // (Optional) What should it set the header value server to? default: Apache/2.2.27 (Unix), set false to disable
   headerServer: 'Apache/2.2.27 (Unix)',
-  // Should it fake PHPSESSID? default: true, set false to disable
-  fakePHPSESSID: true,
+  // Should it fake PHPSESSID? This is default, set false to disable
+  // Legacy Codes will be compatible at this point, but i recommend using this way.
+  fakePHPSESSID: {
+    // maxAge of fake session Cookie in milliseconds, (default: 5 minutes)
+    maxAge: 300000,
+    // Instead of PHPSESSID, Which fake session name you are going to use? (default: PHPSESSID)
+    sessionName: "PHPSESSID"
+  },
   // Redirection setup. This is the default, set false to disable
   redirection: {
     // add .php at end of the file, e.g. /a -> /a.php, default: true

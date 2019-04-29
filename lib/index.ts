@@ -29,7 +29,7 @@ export interface PhpifyOption {
   /**
    * Whether to disable fake PHPSESSID. (default: true), false to disable
    */
-  fakePHPSESSID?: boolean;
+  fakePHPSESSID?: boolean | SessionIDOption;
   /**
    * Redirect to php extension option. (default: redirect), false to disable
    */
@@ -38,6 +38,21 @@ export interface PhpifyOption {
    * 
    */
   phpEastereggs?: boolean;
+}
+
+/**
+ * The Interface for detailed setting in fakePHPSESSID.
+ */
+export interface SessionIDOption {
+  /**
+   * Provide the maxAge of SESSION mocking cookie (in milliseconds)
+   */
+  maxAge?: number;
+
+  /**
+   * Provide the sessionID name of cookie (default: PHPSESSID)
+   */
+  sessionName: false | string;
 }
 
 /**
@@ -88,10 +103,18 @@ export function phpify(app: Application, option?: PhpifyOption) {
     }
     if (option.fakePHPSESSID !== false) {
       const cookie = req.cookies.PHPSESSID;
-      if (!cookie) {
-        console.log("[Express-Phpify] client cookie not found. setting one.");
-        res.cookie('PHPSESSID', createFakePHPSESSID(), { maxAge: 9600 });
+      const config = option.fakePHPSESSID as unknown as SessionIDOption;
+      let maxAge = 1000*60*5;
+      let sessionName = "PHPSESSID"; 
+      if (typeof config.maxAge === "undefined") {
+        maxAge = config.maxAge;
       }
+      if (typeof config.sessionName === "undefined") {
+        sessionName = config.sessionName;
+      }
+      const cookieVal = cookie ? cookie : createFakePHPSESSID();
+      
+      res.cookie(sessionName, cookieVal, {maxAge});
     }
 
     if (option.redirection !== false) {
