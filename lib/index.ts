@@ -205,7 +205,6 @@ export function phpify(app: Application, option?: PhpifyOption) {
             } else if (/^PHP\/\d+.\d+.\d+/.test(option.headerXPoweredBy)) {
               try {
                 const verData = option.headerXPoweredBy.match(/^PHP\/(\d+).(\d+).(\d+)/);
-                console.log(verData);
                 const majorVersion = parseInt(verData[1]);
                 const minorVersion = parseInt(verData[2]);
                 const patchVersion = parseInt(verData[3]);
