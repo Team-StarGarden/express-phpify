@@ -49,7 +49,9 @@ phpify(app, {
       indexFileName: 'index.php'
     }
   },
-  // EasterEgg setup. (will available at 1.2.3-beta releases) This is default, set false to disable
+  // Mock the eastereggs at PHP. (available from 1.2.3-beta)  
+  // This will read the version info of PHP from headerXPoweredBy (if not set, 5.3.3 will be used.)
+  // This will not work if your headerXPoweredBy's version is setted over 5.5.0 (since PHP removed it) (Default: true)
   phpEastereggs: true
 })
 ```
