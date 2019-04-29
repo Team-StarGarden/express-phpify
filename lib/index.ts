@@ -208,7 +208,7 @@ export function phpify(app: Application, option?: PhpifyOption) {
                 console.log(verData);
                 const majorVersion = parseInt(verData[1]);
                 const minorVersion = parseInt(verData[2]);
-                var patchVersion = parseInt(verData[3]);
+                const patchVersion = parseInt(verData[3]);
 
                 if (majorVersion === 5) {
                   if (minorVersion === 0) {
