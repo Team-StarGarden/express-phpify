@@ -39,7 +39,7 @@ phpify(app, {
     // Where should be the basePath of the cookie? (default: /)
     basePath: "/"
   },
-  // Redirection setup. This is the default, set false to disable
+  // Redirection setup. This is the default, set false to disable 
   redirection: {
     // add .php at end of the file, e.g. /a -> /a.php, default: true
     file: true,

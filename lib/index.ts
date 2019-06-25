@@ -109,6 +109,13 @@ const easterEggRegex = /=PHP[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F
  * @param option the phpify option
  */
 export function phpify(app: Application, option?: PhpifyOption) {
+
+  // option handler
+  if (typeof option === undefined || option === null) {
+    // overwrite default
+    option = {};
+  }
+
   // Enable CookieParser.
   app.use(cookieParser());
 
