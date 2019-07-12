@@ -15,6 +15,9 @@
   "tags": [
     "express",
     "php",
+    "express-phpify",
+    "security-by-obsecurity",
+    "web-security",
     "fake"
   ],
   "devDependencies": {
@@ -25,7 +28,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
-    "build": "tsc"  
+    "build": "tsc",
+    "prepublish": "tsc"  
   },
   "repository": {
     "type": "git",
@@ -35,6 +39,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Team-StarGarden/express-phpify/issues"
-  },
+  },	
+  "files": [
+    "dist/"
+  ],
   "homepage": "https://github.com/Team-StarGarden/express-phpify#readme"
 }
